@@ -5,9 +5,9 @@
 */
 
 // Constants
-const N = 1000 // size of multiset
-const K = 5 // number of subsets
-const UPPER_BOUND = 100 // largest possible value in set
+const N = 100 // size of multiset
+const K = 10 // number of subsets
+const UPPER_BOUND = 65535 // largest possible value in set
 
 // Helper functions
 function indexOfSmallest(a) {
@@ -31,7 +31,7 @@ function createMultiSet(n) {  // create a random multiset of size n
 // Main
 const aMultiSet = createMultiSet(N) // create a random multiset
 
-aMultiSet.sort().reverse() // sort the multiset in descending order
+aMultiSet.sort() // sort the multiset
 
 const subSets = []
 const subSetSums = []
@@ -41,12 +41,11 @@ for (let i = 0; i < K; ++i) {
   subSetSums[i] = 0 // initialize sum of subset
 }
 
-aMultiSet.forEach((v) => { // loop through multiset
+for (let i = aMultiSet.length-1; i > -1; --i) { // loop through multiset in reverse order so as to get the larger values first
   const j = indexOfSmallest(subSetSums) // find the smallest sum
-  subSets[j].push(v) // add the value to the subset with the smallest sum
-  subSetSums[j] += v // update the sum of the subset
-  
-})
+  subSets[j].push(aMultiSet[i]) // add the value to the subset with the smallest sum
+  subSetSums[j] += aMultiSet[i] // update the sum of the subset 
+}
 
 // Outputs
 console.log(`N = ${N}, K = ${K}`)
