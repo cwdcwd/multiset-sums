@@ -41,7 +41,7 @@ for (let i = 0; i < K; ++i) {
   subSetSums[i] = 0 // initialize sum of subset
 }
 
-aMultiSet.forEach((v, i) => { // loop through multiset
+aMultiSet.forEach((v) => { // loop through multiset
   const j = indexOfSmallest(subSetSums) // find the smallest sum
   subSets[j].push(v) // add the value to the subset with the smallest sum
   subSetSums[j] += v // update the sum of the subset
